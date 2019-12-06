@@ -10,11 +10,37 @@ body {
 font-family: 'helvetica neue', sans-serif;
 color: white;
 background-color: rgb(0, 121, 191);
+margin : 0px;
+}
+
+.head-title {
+    
+    width :auto;
+    height : 40px;
+    text-align : center;
+    background-color: rgb(6, 86, 133);
+    margin-bottom : 5px;
+    padding-top : 0px;
+}
+
+body > h2 {
+    margin-left : 8px;
+}
+
+.head-title-title {
+    /* text-align :center; */
+    display : inline-block;
+    font-size : 15px;
+    font-weight : 500;
+    font-style : italic;
+    font-family : Elephant;
+    margin-top : 7px;
 }
 
 .board1 {
 display: flex;
-width :3000px;
+width : 3000px;
+margin-left : 8px;
 }
 
 .column {
@@ -91,8 +117,14 @@ box-shadow: 0px 1px 1px 0px gray;
 
 .top30-title {
     display : inline-block;
-    margin-top : 0px;
-    height : 80%;
+    margin : 0px 0px 10px 8px;
+    height : 30px;    
+}
+
+.top30-title > h3 {
+    margin-top : 10px;
+    color : black;
+    font-weight : bolder;
 }
 
 .card-top30 {
@@ -123,18 +155,20 @@ box-shadow: 0px 1px 1px 0px gray;
 .top30-item-item {
     font-size : 15px;
     font-weight: bolder;
+    color : rgb(24, 24, 26);
 }
 
 .top30-item-market {
     display: inline-block;
-    font-size : 8px;
+    font-size : 5px;
     color : white;
-    background-color: #534f4f;
-    padding : 0px 1.5px 0.5px 1.5px;
+    background-color: #110735;
+    padding : 0px 6px 1.5px 6px;
     text-align : center;
-    border-radius : 2px;
+    border-radius : 3px;
     font-weight : bold;
-    margin-bottom: 0px;
+    margin-bottom: 3px;
+    margin-left : 2px;
 }
 
 .top30-info {
@@ -248,10 +282,8 @@ border-radius : 2px;
 .date-picker {
     /* background-color: steelblue; */
     width : 70%;
-    font-size : 0px;
-    /* display : inline; */
     display : inline-block;
-   
+    margin-left : 35px;
 }
 
 

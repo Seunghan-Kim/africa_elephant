@@ -12,13 +12,15 @@
    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
    <script src="//bensmithett.github.io/dragster/lib/dragster.js"></script>
-   <link rel="stylesheet" href="{% static 'css/kanban.css' %}">
+   <link rel="stylesheet" href="{% static "css/kanban.css" %}">
 </head>
 
 <body>
    {% block content %}{% endblock %}
-
-   <h1>아프리카 코끼리</h1>
+   <div class="head-title">
+         <span class="head-title-title">Africa Elephant</span>
+   </div>
+   
 
    {% for board in boards %} 
    <h2>{{ board.name }}</h2>
@@ -27,7 +29,7 @@
    <div class="board1" >
       <div class="column-top30">
          <div class="top30-title">
-            <h3>TOP 30</h3>
+            <h3>상승률 TOP 30</h3>
          </div>         
          <span class="date-picker">
             <form action="/" method="POST">
@@ -113,7 +115,7 @@
          ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
          //  ,changeYear: true //콤보박스에서 년 선택 가능
          //  ,changeMonth: true //콤보박스에서 월 선택 가능                
-         ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+         // ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
          ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
          ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
          ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                

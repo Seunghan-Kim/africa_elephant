@@ -1,0 +1,5 @@
+*.pyc
+db.sqlite3
+trello
+__pycache__
+local_settings.py
