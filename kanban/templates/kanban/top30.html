@@ -18,7 +18,8 @@
 <body  onload="chngcolor();">
    {% block content %}{% endblock %}
    <div class="head-title">
-         <span class="head-title-title">Africa Elephant</span>
+      <a class="home-button" href="/">HOME</a>
+      <span class="head-title-title">Africa Elephant</span>
    </div>
    
 
@@ -31,7 +32,7 @@
          <div class="top30-title">
             <span class="top30-title-title">상승률 TOP 30</span>
             <span class="date-picker">
-               <form action="/" method="POST">
+               <form action="/Top30/" method="POST">
                   {% csrf_token %}
                   <input type="text" id="datepicker" name="date" class='input-group' value="{{ date }}"/>
                   <button type="submit" class="date-button">Update</button>
@@ -55,11 +56,14 @@
                </div>
                
             </span>
-            <span class="top30-info">
+            
+            <div class="top30-info">
                <img src="{% static "kanban/red_bar.png"%}" alt="My image" border=0 height="10px" width="{{ card.drate }}" class="top30-info-image"/>
+               <span class="top30-info-mrate" id="top30-mrate" data-card-mrate="{{ card.mrate }}">{{ card.mrate|floatformat:0 }}%</span> 
                <span class="top30-info-drate">{{ card.drate|floatformat:1 }}%</span>
-               <span class="top30-info-mrate" id="top30-mrate" data-card-mrate="{{ card.mrate }}">{{ card.mrate|floatformat:0 }}%</span>
-            </span>   
+                                           
+            </div>
+             
          </div>         
          {% endfor %}  
       </div>
@@ -187,9 +191,10 @@
       var currentActiveElement = document.activeElement;
 
       if (targetElement.className === 'mask') {
-         console.log(targetElement.className)
-         window.location = '/';
+         console.log(targetElement.className);
+         window.location = '/Top30/';
       }   
+
       else if (currentActiveElement.dataset.columnId === undefined && previousActiveElement.dataset.columnId === undefined && currentActiveElement.className !== 'new-list' && previousActiveElement.className !== 'new-list' && previousActiveElement.className !== 'new-card-name') {return;}
       else if (previousActiveElement.className === 'new-card') {
          if (currentActiveElement.dataset.columnId === undefined || previousActiveElement.className !== currentActiveElement.className || currentActiveElement.dataset.columnId !== previousActiveElement.dataset.columnId) {
@@ -375,7 +380,7 @@
      body: postData,
     }).then(response => {
      if (response.ok) {
-      window.location = '/';
+      window.location = '/Top30/';
      } else {
       alert('Error! ' + response.statusText);
      }

@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^delete-column/$', views.delete_column),
     url(r'^new-card-name/$', views.new_card_name),
+    url(r'^Top30/$', views.top30),
 ]

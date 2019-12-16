@@ -27,8 +27,7 @@ SECRET_KEY = '=y(c!*#^=m3y9v4$qmg=j4l-i3&@e*-l7l*-b&68^)^253r&i2'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'commoncode-djello.herokuapp.com',
-    '127.0.0.1',
+    'localhost', '127.0.0.1', '.pythonanywhere.com', '.herokuapp.com',
 ]
 
 
@@ -82,10 +81,10 @@ WSGI_APPLICATION = 'djello.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-# import dj_database_url
-# DATABASES = {
-#     'default': dj_database_url.config(conn_max_age=500, default='postgres://localhost/djello'),
-# }
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=500, default='postgres://localhost/djello'),
+}
 
 DATABASES = {
     'default': {
@@ -93,6 +92,17 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'djangogirls',
+#         'USER': 'name',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -137,5 +147,8 @@ STATICFILES_DIRS = (
 )
 # STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 

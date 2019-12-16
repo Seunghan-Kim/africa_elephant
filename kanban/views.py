@@ -9,28 +9,39 @@ from . import getdata
 
 import datetime as dt
 
-
 @ensure_csrf_cookie
 def index(request):
+    return render(request, template_name='kanban/home.html', context={
+    'boards': Board.objects.all(),
+    })
     
-    input_date = '2019-11-22'
-    df = getdata.getdata(input_date)
+
+
+@ensure_csrf_cookie
+def top30(request):
+    
+    input_date = '2019-12-08'
+    # df = getdata.getdata(input_date)
     Card_top30.objects.all().delete()
     
     date1 = request.POST.get('date')
 
     if date1 == None:
         date1 = input_date
-        
 
-    for i in range(0, len(df.index)):
-        date = df.iloc[i, 0]
-        title = df.iloc[i,1]
-        rate = df.iloc[i,2]
-        market = df.iloc[i,3]
-        Card_top30.objects.create(title=title, rate=rate, market=market)
+    df = getdata.getdata(date1)
+
+    for row in df.itertuples():
+        date    = row.날짜
+        title   = row.종목명
+        drate   = row.등락률
+        market  = row.시장
+        mrate   = float(0.0)
+        capital = row.시가총액
+        code = '000000'
+        Card_top30.objects.create(title=title, drate=drate, market=market, mrate=mrate, capital=capital, code=code)
     
-    return render(request, template_name='kanban/base.html', context={
+    return render(request, template_name='kanban/top30.html', context={
         'boards': Board.objects.all(),
         'tops' : Card_top30.objects.all(),
         'date' : date1,
@@ -44,7 +55,7 @@ def new_card(request):
     #     return redirect('/')
     assert title and column_id
     Card.objects.create(title=title, column_id=column_id)
-    return redirect('/')
+    return redirect('/Top30')
 
 def new_list(request):
     board_id = int(request.POST.get('board_id'))
@@ -53,7 +64,7 @@ def new_list(request):
     #     return redirect('/')
     assert title and board_id
     Column.objects.create(title=title, board_id=board_id)
-    return redirect('/')
+    return redirect('/Top30/')
 
 def new_col_name(request):
     column_id = int(request.POST.get('column_id'))
@@ -62,14 +73,14 @@ def new_col_name(request):
     #     return redirect('/')
     assert title and column_id
     Column.objects.filter(id=column_id).update(title=title)
-    return redirect('/')
+    return redirect('/Top30')
 
 def delete_column(request):
     column_id = int(request.POST.get('column_id'))
     print(column_id)
     assert column_id
     Column.objects.filter(id=column_id).delete()
-    return redirect('/')
+    return redirect('/Top30')
 
 
 def view_card(request, card_id, card_slug):

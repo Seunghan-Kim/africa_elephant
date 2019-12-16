@@ -1,0 +1,69 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>AE Stocks</title>
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+   <script src="//bensmithett.github.io/dragster/lib/dragster.js"></script>
+   <link rel="stylesheet" href="{% static "css/kanban.css" %}">
+   <style>
+      .board {
+         display: block;
+         background-color: rgb(179, 85, 85);
+         border-radius: 3px;
+         padding: 8px;
+         margin-bottom: 8px;
+         text-decoration: inherit;
+         width : 160px;
+         height : 70px;
+         font-size : 20px;
+         color : white;
+         margin : 100px 100px 100px 100px;
+      }
+
+      .boards-box {
+         display : block;
+         width : 500px;
+         height : 500px;
+      }
+
+      body {
+         font-family: 'helvetica neue', sans-serif;
+         color: white;
+         background-color: whitesmoke;
+         margin : 0px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="head-title">
+      <span class="head-title-title">Africa Elephant</span>
+   </div>
+   <div class="boards-box">
+   {% for board in boards %}
+
+      <a class="board" href='#' onclick="goTo(event)" data-board-name="{{ board.name }}">{{ board.name }}</a>
+
+   {% endfor %}
+   </div>
+
+   <script type="text/javascript">
+
+      function goTo(event) {
+         var boardname = event.target.dataset.boardName;
+         var url = '/'+ boardname +'/';
+         window.location = url;
+      }
+
+  </script>
+  
+</body>
+</html>
